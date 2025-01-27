@@ -18,7 +18,7 @@ public class PolicyReportService(IPolicyRepository policyRepo) : IPolicyReportSe
     {
         DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
 
-        return GetPolicies(brokerNameOrId, filter: p => p.StartDate <= currentDate && p.EndDate >= currentDate);
+        return GetPolicies(brokerNameOrId, filter: p => p.StartDate <= currentDate && p.EndDate > currentDate);
     }
 
     private async Task<Report> GetPolicies(string? brokerNameOrId, Func<Policy, bool>? filter)
