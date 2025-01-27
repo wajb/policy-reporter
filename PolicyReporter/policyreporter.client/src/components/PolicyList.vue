@@ -7,7 +7,7 @@
     <p>Policy count: {{ report?.statistics.policyCount ?? 0 }}</p>
     <p>Customer count: {{ report?.statistics.customerCount ?? 0 }}</p>
     <p>Insured amount total: {{ report?.statistics.insuredAmountTotal ?? 0 }}</p>
-    <p>Average policy duration (in days): {{ report?.statistics.AveragePolicyDurationDays ?? 0 }}</p>
+    <p>Average policy duration (in days): {{ report?.statistics.averagePolicyDurationDays ?? 0 }}</p>
   </section>
   <table>
     <thead>
@@ -51,7 +51,7 @@
     policyCount: number;
     customerCount: number;
     insuredAmountTotal: number;
-    AveragePolicyDurationDays: number;
+    averagePolicyDurationDays: number;
   }
 
   interface Report {
