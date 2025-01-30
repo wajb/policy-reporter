@@ -16,3 +16,8 @@ GET {{PolicyReporter.Server_HostAddress}}/policyreport?broker=1&activeOnly=true
 Accept: application/json
 
 ###
+
+GET {{PolicyReporter.Server_HostAddress}}/policyreport?broker=broker2&activeOnly=false
+Accept: application/json
+
+###

@@ -55,7 +55,10 @@ public class PolicyReportService(IPolicyRepository policyRepo) : IPolicyReportSe
         if (int.TryParse(brokerNameOrId, out brokerId))
             return true;
 
-        // TODO look up broker names to find source ID
+        // TODO look up broker names to find source ID (the following is for demo purposes)
+
+        if (int.TryParse(new String(brokerNameOrId.Where(Char.IsDigit).ToArray()), out brokerId))
+            return true;
 
         return false;
     }
