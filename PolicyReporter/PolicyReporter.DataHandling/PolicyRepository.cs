@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace PolicyReporter.DataHandling;
 
@@ -7,14 +8,30 @@ public class PolicyRepository(PolicyDbContext dbContext) : IPolicyRepository
 {
     private readonly PolicyDbContext _dbContext = dbContext;
 
-    private void InitDatabase() => _dbContext.Database.Migrate();
+    private void InitDatabase()
+    {
+        if (_dbContext.Database.IsRelational())
+            _dbContext.Database.Migrate();
+    }
+
+    private void CheckTable()
+    {
+        try
+        {
+            _ = _dbContext.Policies.Count();
+        }
+        catch (SqliteException e) when (e.Message.Contains("no such table"))
+        {
+            throw new InvalidOperationException("Database does not exist - please run aggregator tool first!", e);
+        }
+    }
 
     /// <inheritdoc/>
     public Task<Func<Task>> Upsert(Policy policy)
     {
         InitDatabase();
 
-        if (_dbContext.Policies.Any(p => p.PolicyId == policy.PolicyId && policy.SourceId == policy.SourceId))
+        if (_dbContext.Policies.Any(p => p.PolicyId == policy.PolicyId && p.SourceId == policy.SourceId))
         {
             Console.WriteLine($"Updating {policy.PolicyId} ({policy.SourceId})");
             _dbContext.Update(policy);
@@ -31,10 +48,16 @@ public class PolicyRepository(PolicyDbContext dbContext) : IPolicyRepository
     }
 
     /// <inheritdoc/>
-    public Task<List<Policy>> GetAllPolicies() =>
-        _dbContext.Policies.AsNoTracking().ToListAsync();
+    public Task<List<Policy>> GetAllPolicies()
+    {
+        CheckTable();
+        return _dbContext.Policies.AsNoTracking().ToListAsync();
+    }
 
     /// <inheritdoc/>
-    public Task<List<Policy>> GetPoliciesBySourceId(int sourceId) =>
-        _dbContext.Policies.AsNoTracking().Where(p => p.SourceId == sourceId).ToListAsync();
+    public Task<List<Policy>> GetPoliciesBySourceId(int sourceId)
+    {
+        CheckTable();
+        return _dbContext.Policies.AsNoTracking().Where(p => p.SourceId == sourceId).ToListAsync();
+    }
 }

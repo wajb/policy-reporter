@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyReporter.DataHandling
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyReporter.Aggregator", "PolicyReporter.Aggregator\PolicyReporter.Aggregator.csproj", "{8FEDBF52-32B4-449A-9D0D-B7E8D8D8BB9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyReporter.DataHandling.Tests", "PolicyReporter.DataHandling.Tests\PolicyReporter.DataHandling.Tests.csproj", "{C9DB1649-E529-44F2-A088-A09859441254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyReporter.Server.Tests", "PolicyReporter.Server.Tests\PolicyReporter.Server.Tests.csproj", "{31668B0B-3A9D-4034-BEEB-EE02E70A870E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{8FEDBF52-32B4-449A-9D0D-B7E8D8D8BB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FEDBF52-32B4-449A-9D0D-B7E8D8D8BB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FEDBF52-32B4-449A-9D0D-B7E8D8D8BB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DB1649-E529-44F2-A088-A09859441254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9DB1649-E529-44F2-A088-A09859441254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9DB1649-E529-44F2-A088-A09859441254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9DB1649-E529-44F2-A088-A09859441254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31668B0B-3A9D-4034-BEEB-EE02E70A870E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31668B0B-3A9D-4034-BEEB-EE02E70A870E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31668B0B-3A9D-4034-BEEB-EE02E70A870E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31668B0B-3A9D-4034-BEEB-EE02E70A870E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

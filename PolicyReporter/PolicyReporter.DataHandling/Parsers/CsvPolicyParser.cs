@@ -10,13 +10,14 @@ namespace PolicyReporter.DataHandling.Parsers;
 /// Strategy that parses policies with <typeparamref name="T"/> format from CSV files.
 /// </summary>
 /// <typeparam name="T">Type representing source policy format.</typeparam>
-public abstract class CsvPolicyParser<T> : IPolicyParserStrategy where T : class
+/// <param name="csvReaderFactory">Factory to create <see cref="CsvReader"/>s.</param>
+public abstract class CsvPolicyParser<T>(ICsvReaderFactory csvReaderFactory) : IPolicyParserStrategy where T : class
 {
     /// <inheritdoc/>
     public async IAsyncEnumerable<Policy> ParsePolicies(IPolicySource source)
     {
         using StreamReader reader = source.GetReader();
-        using CsvReader csv = new(reader, CsvConfiguration.FromAttributes<T>());
+        using CsvReader csv = csvReaderFactory.CreateCsvReader(reader, CsvConfiguration.FromAttributes<T>());
 
         IAsyncEnumerator<T> enumerator = csv.GetRecordsAsync<T>().GetAsyncEnumerator();
 

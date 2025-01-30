@@ -1,7 +1,8 @@
 ﻿namespace PolicyReporter.DataHandling.Parsers;
 
 /// <inheritdoc/>
-public class ReferencedPolicyParser : CsvPolicyParser<SourceReferencedPolicy>
+public class ReferencedPolicyParser(ICsvReaderFactory csvReaderFactory)
+    : CsvPolicyParser<SourceReferencedPolicy>(csvReaderFactory)
 {
     /// <inheritdoc/>
     protected override Policy MapToPolicy(SourceReferencedPolicy record, int sourceId) => new()

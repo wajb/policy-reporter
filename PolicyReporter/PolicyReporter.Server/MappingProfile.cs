@@ -16,7 +16,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Policy, PolicyDto>();
-        CreateMap<PolicyStatisticsDto, PolicyStatisticsDto>();
+        CreateMap<PolicyStatistics, PolicyStatisticsDto>();
         CreateMap<Report, ReportDto>();
     }
 }

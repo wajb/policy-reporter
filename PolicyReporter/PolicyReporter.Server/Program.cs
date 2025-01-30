@@ -1,4 +1,4 @@
-using PolicyReporter.DataHandling;
+using PolicyReporter.DataHandling.Extensions;
 using PolicyReporter.Server;
 using PolicyReporter.Server.Services;
 
@@ -7,7 +7,8 @@ IServiceCollection services = builder.Services;
 
 services.AddControllers();
 services.AddOpenApi();
-services.AddScoped<IPolicyRepository>(_ => new PolicyRepository(new PolicyDbContext()));
+services.AddPolicyHandling();
+services.AddPolicyDbContext();
 services.AddScoped<IPolicyReportService, PolicyReportService>();
 services.AddAutoMapper(typeof(MappingProfile));
 

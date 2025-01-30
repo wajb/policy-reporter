@@ -5,7 +5,7 @@
 /// </summary>
 public record ReportDto
 {
-    required public Models.PolicyStatistics Statistics { get; init; }
+    required public PolicyStatisticsDto Statistics { get; init; }
 
     required public List<PolicyDto> Policies { get; init; }
 }
