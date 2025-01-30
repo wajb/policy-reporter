@@ -17,7 +17,7 @@
           :class="{ active: sortColumnName == columnName }"
           :key="columnName">
           {{ columnName }}
-          <span class="arrow" :class="sortOrders[columnName] == 1 ? 'asc' : 'desc'">
+          <span :class="'arrow ' + (sortOrders[columnName] == 1 ? 'asc' : 'desc')">
           </span>
         </th>
       </tr>
@@ -135,6 +135,7 @@
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.66);
   transition: opacity 0.5s;
+  pointer-events: none;
 }
 
 .loading-panel p {
